@@ -1,3 +1,6 @@
 package com.ps.translatepro.translate.data.translate
 
-data class TranslatedDto()
+@kotlinx.serialization.Serializable
+data class TranslatedDto(
+    val translatedText: String
+)
