@@ -14,7 +14,7 @@ class Translate(
         fromText: String,
         toLanguage: Language
     ): Resource<String> {
-        return try{
+        return try {
             val translatedText = client.translate(
                 fromLanguage = fromLanguage,
                 fromText = fromText,
@@ -31,7 +31,7 @@ class Translate(
                 )
             )
             Resource.Success(translatedText)
-        } catch (e : TranslateException){
+        } catch (e: TranslateException) {
             e.printStackTrace()
             Resource.Error(e)
         }
