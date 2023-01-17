@@ -1,9 +1,9 @@
 package com.ps.translatepro.translate.data.translate
 
 import com.ps.translatepro.core.domain.language.Language
-import com.ps.translatepro.translate.`package`.translate.TranslateClient
-import com.ps.translatepro.translate.`package`.translate.TranslateError
-import com.ps.translatepro.translate.`package`.translate.TranslateException
+import com.ps.translatepro.translate.domain.translate.TranslateClient
+import com.ps.translatepro.translate.domain.translate.TranslateError
+import com.ps.translatepro.translate.domain.translate.TranslateException
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*

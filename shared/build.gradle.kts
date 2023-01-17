@@ -76,9 +76,16 @@ kotlin {
 
 android {
     namespace = "com.ps.translatepro"
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         minSdk = 24
-        targetSdk = 32
+        targetSdk = 33
+    }
+}
+
+sqldelight {
+    database("TranslateDatabase") {
+        packageName = "com.ps.translatepro.database"
+        sourceFolders = listOf("sqldelight")
     }
 }

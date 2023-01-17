@@ -1,4 +1,4 @@
-package com.ps.translatepro.translate.`package`.translate
+package com.ps.translatepro.translate.domain.translate
 
 import com.ps.translatepro.core.domain.language.Language
 

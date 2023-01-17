@@ -1,4 +1,4 @@
-package com.ps.translatepro.translate.`package`.translate
+package com.ps.translatepro.translate.domain.translate
 
 enum class TranslateError {
     SERVICE_UNAVAILABLE,
