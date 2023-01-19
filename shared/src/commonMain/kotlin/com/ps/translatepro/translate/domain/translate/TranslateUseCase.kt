@@ -5,7 +5,7 @@ import com.ps.translatepro.core.domain.util.Resource
 import com.ps.translatepro.translate.domain.history.HistoryDataSource
 import com.ps.translatepro.translate.domain.history.HistoryItem
 
-class Translate(
+class TranslateUseCase(
     private val client: TranslateClient,
     private val historyDataSource: HistoryDataSource
 ) {

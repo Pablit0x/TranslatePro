@@ -4,7 +4,7 @@ import com.ps.translatepro.core.domain.util.Resource
 import com.ps.translatepro.core.domain.util.toCommonStateFlow
 import com.ps.translatepro.core.presentation.UiLanguage
 import com.ps.translatepro.translate.domain.history.HistoryDataSource
-import com.ps.translatepro.translate.domain.translate.Translate
+import com.ps.translatepro.translate.domain.translate.TranslateUseCase
 import com.ps.translatepro.translate.domain.translate.TranslateException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class TranslateViewModel(
-    private val translate: Translate,
+    private val translateUseCase: TranslateUseCase,
     private val historyDataSource: HistoryDataSource,
     private val coroutineScope: CoroutineScope?
 ) {
@@ -167,7 +167,7 @@ class TranslateViewModel(
                     isTranslating = true
                 )
             }
-            val result = translate.execute(
+            val result = translateUseCase.execute(
                 fromLanguage = state.fromLanguage.language,
                 fromText = state.fromText,
                 toLanguage = state.toLanguage.language
