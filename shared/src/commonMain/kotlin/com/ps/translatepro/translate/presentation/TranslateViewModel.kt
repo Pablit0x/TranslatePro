@@ -4,8 +4,8 @@ import com.ps.translatepro.core.domain.util.Resource
 import com.ps.translatepro.core.domain.util.toCommonStateFlow
 import com.ps.translatepro.core.presentation.UiLanguage
 import com.ps.translatepro.translate.domain.history.HistoryDataSource
-import com.ps.translatepro.translate.domain.translate.TranslateUseCase
 import com.ps.translatepro.translate.domain.translate.TranslateException
+import com.ps.translatepro.translate.domain.translate.TranslateUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -65,7 +65,7 @@ class TranslateViewModel(
             is TranslateEvent.ChooseToLanguage -> {
                 val newState = _state.updateAndGet {
                     it.copy(
-                        isChoosingFromLanguage = false,
+                        isChoosingToLanguage = false,
                         toLanguage = event.language
                     )
                 }
@@ -144,12 +144,22 @@ class TranslateViewModel(
                 _state.update {
                     it.copy(
                         fromLanguage = it.toLanguage,
-                        toLanguage = it.toLanguage,
-                        fromText = it.fromText,
+                        toLanguage = it.fromLanguage,
+                        fromText = it.toText ?: "",
                         toText = if (it.toText != null) it.fromText else null
                     )
                 }
             }
+//            TranslateEvent.SwapLanguages -> {
+//                _state.update {
+//                    it.copy(
+//                        fromLanguage = it.fromLanguage,
+//                        toLanguage = it.toLanguage,
+//                        fromText = it.fromText,
+//                        toText = if (it.toText != null) it.fromText else null
+//                    )
+//                }
+//            }
             TranslateEvent.Translate -> {
                 translate(state.value)
             }

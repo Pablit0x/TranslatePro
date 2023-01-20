@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="close">close</string>
+    <string name="open">open</string>
+    <string name="swap_languages">Swap Languages Icon</string>
+    <string name="enter_text_to_translate">Enter text…</string>
+    <string name="translate">Translate</string>
+    <string name="copy">Copy Icon</string>
+    <string name="speaker">Speaker Icon</string>
+    <string name="copied_to_clipboard">Text copied to clipboard…</string>
+
+</resources>
