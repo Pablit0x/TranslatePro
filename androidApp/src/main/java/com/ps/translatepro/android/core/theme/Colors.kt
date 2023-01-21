@@ -12,8 +12,8 @@ val DarkGrey = Color(Colors.DarkGrey)
 val SuperLightGrey = Color(Colors.SuperLightGrey)
 val NormalGrey = Color(Colors.NormalGrey)
 
-val DarkSurfaceStart = Color(0xFF23262E)
-val DarkSurfaceEnd = Color(0xFF212329)
+val DarkSurfaceStart = Color(Colors.DarkSurfaceStart)
+val DarkSurfaceEnd = Color(Colors.DarkSurfaceEnd)
 
 val lightColors = lightColors(
     secondary = SuperLightGrey,

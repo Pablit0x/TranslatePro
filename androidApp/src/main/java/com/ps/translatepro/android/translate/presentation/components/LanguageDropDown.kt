@@ -8,12 +8,15 @@ import androidx.compose.material.DropdownMenu
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.ps.translatepro.core.presentation.UiLanguage
 
 @Composable
@@ -33,12 +36,14 @@ fun LanguageDropDown(
     ) {
         Row(
             modifier = Modifier
-                .padding(16.dp)
+                .padding(8.dp)
                 .fillMaxWidth(),
             verticalAlignment = CenterVertically) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = language.language.langName,
+                style = MaterialTheme.typography.body1,
+                fontSize = 16.sp,
                 color = MaterialTheme.colors.onSecondary,
                 textAlign = TextAlign.Center
             )
@@ -47,7 +52,7 @@ fun LanguageDropDown(
             expanded = isOpen,
             onDismissRequest = onDismiss,
             modifier = Modifier.fillMaxHeight(0.6f),
-            offset = DpOffset(x = 0.dp, y = 25.dp)
+            offset = DpOffset(x = 0.dp, y = 20.dp)
         ) {
             UiLanguage.allLanguages.forEach { language ->
                 LanguageDropDownItem(

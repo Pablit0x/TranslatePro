@@ -20,15 +20,15 @@ import com.ps.translatepro.android.R
 
 @Composable
 fun SwapLanguagesButton(
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    onClick: () -> Unit
 ) {
     IconButton(
         onClick = onClick
     ) {
         Icon(
             imageVector = ImageVector.vectorResource(id = R.drawable.swap_languages),
-            contentDescription = stringResource(id = R.string.swap_languages)
+            contentDescription = stringResource(id = R.string.swap_languages),
+            Modifier.size(16.dp)
         )
     }
 }

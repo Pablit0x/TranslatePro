@@ -8,4 +8,6 @@ object Colors {
     const val DarkGrey = 0xFF282C31
     const val SuperLightGrey = 0xFFE5E5E5
     const val NormalGrey = 0xFF53565B
+    const val DarkSurfaceStart = 0xFF23262E
+    const val DarkSurfaceEnd = 0xFF212329
 }
