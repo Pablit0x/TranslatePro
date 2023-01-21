@@ -8,5 +8,11 @@
     <string name="copy">Copy Icon</string>
     <string name="speaker">Speaker Icon</string>
     <string name="copied_to_clipboard">Text copied to clipboard…</string>
+    <string name="history">History</string>
+    <string name="error_service_unavailable">Awkward, something went wrong. Please try again later.</string>
+    <string name="error_client">Awkward, something went wrong. Please contact the support.</string>
+    <string name="error_server">Awkward, something went wrong. Please try again later.</string>
+    <string name="error_unknown">Oops, an unkown error happend.</string>
+    <string name="record_audio">Record Audio Icon</string>
 
 </resources>

@@ -26,7 +26,7 @@ class TranslateUseCase(
                     id = null,
                     fromLanguageCode = fromLanguage.langCode,
                     fromText = fromText,
-                    toLanguageCode = fromLanguage.langCode,
+                    toLanguageCode = toLanguage.langCode,
                     toText = translatedText
                 )
             )

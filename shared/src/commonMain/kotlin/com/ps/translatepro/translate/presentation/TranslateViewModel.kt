@@ -150,16 +150,6 @@ class TranslateViewModel(
                     )
                 }
             }
-//            TranslateEvent.SwapLanguages -> {
-//                _state.update {
-//                    it.copy(
-//                        fromLanguage = it.fromLanguage,
-//                        toLanguage = it.toLanguage,
-//                        fromText = it.fromText,
-//                        toText = if (it.toText != null) it.fromText else null
-//                    )
-//                }
-//            }
             TranslateEvent.Translate -> {
                 translate(state.value)
             }
