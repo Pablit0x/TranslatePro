@@ -29,7 +29,8 @@ fun LanguageDropDown(
     modifier: Modifier = Modifier
 ) {
     Box(modifier = modifier
-        .width(160.dp)
+        .width(140.dp)
+        .height(50.dp)
         .clip(RoundedCornerShape(20.dp))
         .background(MaterialTheme.colors.secondary)
         .clickable(onClick = onClick)

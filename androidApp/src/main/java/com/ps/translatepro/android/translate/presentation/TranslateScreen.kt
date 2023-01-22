@@ -5,9 +5,9 @@ import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -24,6 +24,8 @@ import com.ps.translatepro.android.translate.presentation.components.*
 import com.ps.translatepro.translate.domain.translate.TranslateError
 import com.ps.translatepro.translate.presentation.TranslateEvent
 import com.ps.translatepro.translate.presentation.TranslateState
+
+import kotlinx.coroutines.launch
 import java.util.*
 
 
@@ -34,6 +36,13 @@ fun TranslateScreen(
     onEvent: (TranslateEvent) -> Unit,
 ) {
     val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
+    val listState = rememberLazyListState()
+    val firstItemVisible by remember {
+        derivedStateOf {
+            listState.firstVisibleItemIndex == 0
+        }
+    }
 
     LaunchedEffect(key1 = state.error) {
         val message = when (state.error) {
@@ -73,6 +82,7 @@ fun TranslateScreen(
                 .fillMaxSize()
                 .padding(padding)
                 .padding(16.dp),
+            state = listState,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             item {
@@ -166,9 +176,14 @@ fun TranslateScreen(
             items(state.history) { historyItem ->
                 TranslateHistoryItem(
                     historyItem = historyItem,
-                    onClick = { onEvent(TranslateEvent.SelectHistoryItem(historyItem)) },
+                    onClick = {
+                        coroutineScope.launch {
+                            if(!firstItemVisible)
+                                listState.animateScrollToItem(1)
+                        }
+                        onEvent(TranslateEvent.SelectHistoryItem(historyItem)) },
                     modifier = Modifier.fillMaxWidth()
-                )
+            )
             }
         }
     }
