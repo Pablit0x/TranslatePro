@@ -28,7 +28,9 @@ fun LanguageDropDown(
     onSelectLanguage: (UiLanguage) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Box(modifier = modifier
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = modifier
         .width(140.dp)
         .height(50.dp)
         .clip(RoundedCornerShape(20.dp))
@@ -37,7 +39,6 @@ fun LanguageDropDown(
     ) {
         Row(
             modifier = Modifier
-                .padding(8.dp)
                 .fillMaxWidth(),
             verticalAlignment = CenterVertically) {
             Text(
@@ -49,7 +50,7 @@ fun LanguageDropDown(
                 textAlign = TextAlign.Center
             )
         }
-        DropdownMenu(
+    DropdownMenu(
             expanded = isOpen,
             onDismissRequest = onDismiss,
             modifier = Modifier.fillMaxHeight(0.6f),
