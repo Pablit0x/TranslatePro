@@ -56,12 +56,13 @@ fun TranslateScreen(
                 onClick = { onEvent(TranslateEvent.RecordAudio) },
                 backgroundColor = MaterialTheme.colors.primary,
                 contentColor = MaterialTheme.colors.onPrimary,
-                modifier = Modifier.size(75.dp)
+                modifier = Modifier.size(65.dp)
             ) {
 
                 Icon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.mic),
-                    contentDescription = stringResource(id = R.string.record_audio)
+                    contentDescription = stringResource(id = R.string.record_audio),
+                    modifier = Modifier.size(35.dp)
                 )
             }
         },

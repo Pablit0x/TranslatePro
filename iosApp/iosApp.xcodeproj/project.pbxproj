@@ -12,6 +12,8 @@
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		5935769CC947B358B4EC0E02 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370B066A28E95C83764FB6A1 /* Pods_iosApp.framework */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		EB0806BF297CA46300E0E6B8 /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0806BE297CA46300E0E6B8 /* TextToSpeech.swift */; };
+		EB0806C1297CA64900E0E6B8 /* TranslateHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0806C0297CA64900E0E6B8 /* TranslateHistoryItem.swift */; };
 		EBCB5757297C0E030047AAC4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB5756297C0E030047AAC4 /* Colors.swift */; };
 		EBCB575C297C295F0047AAC4 /* LanguageDropDownItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB575B297C295F0047AAC4 /* LanguageDropDownItem.swift */; };
 		EBCB575E297C2E910047AAC4 /* LanguageDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB575D297C2E910047AAC4 /* LanguageDropDown.swift */; };
@@ -35,6 +37,8 @@
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85314DBE2EB5082FE51A789C /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
+		EB0806BE297CA46300E0E6B8 /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
+		EB0806C0297CA64900E0E6B8 /* TranslateHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateHistoryItem.swift; sourceTree = "<group>"; };
 		EBCB5756297C0E030047AAC4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		EBCB575B297C295F0047AAC4 /* LanguageDropDownItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageDropDownItem.swift; sourceTree = "<group>"; };
 		EBCB575D297C2E910047AAC4 /* LanguageDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageDropDown.swift; sourceTree = "<group>"; };
@@ -148,6 +152,7 @@
 				EBCB575A297C29410047AAC4 /* components */,
 				EBCB5763297C351F0047AAC4 /* IOSTranslateViewModel.swift */,
 				EBCB5765297C35390047AAC4 /* TranslateScreen.swift */,
+				EB0806BE297CA46300E0E6B8 /* TextToSpeech.swift */,
 			);
 			path = presentation;
 			sourceTree = "<group>";
@@ -162,6 +167,7 @@
 				EBCB5769297C56BB0047AAC4 /* LanguageDisplay.swift */,
 				EBCB576B297C57990047AAC4 /* ProgressButton.swift */,
 				EBCB576D297C59340047AAC4 /* TranslateTextField.swift */,
+				EB0806C0297CA64900E0E6B8 /* TranslateHistoryItem.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -309,7 +315,9 @@
 				EBCB5762297C32290047AAC4 /* SwapLanguageButton.swift in Sources */,
 				EBCB5757297C0E030047AAC4 /* Colors.swift in Sources */,
 				EBCB5766297C35390047AAC4 /* TranslateScreen.swift in Sources */,
+				EB0806BF297CA46300E0E6B8 /* TextToSpeech.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				EB0806C1297CA64900E0E6B8 /* TranslateHistoryItem.swift in Sources */,
 				EBCB576E297C59340047AAC4 /* TranslateTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,7 +455,7 @@
 					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
 				);
 				INFOPLIST_FILE = iosApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -484,7 +492,7 @@
 					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
 				);
 				INFOPLIST_FILE = iosApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

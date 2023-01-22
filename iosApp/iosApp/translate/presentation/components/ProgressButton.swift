@@ -45,3 +45,5 @@ struct ProgressButton_Previews: PreviewProvider {
         ProgressButton(text: "Translate", isLoading: false, onClick : {})
     }
 }
+
+

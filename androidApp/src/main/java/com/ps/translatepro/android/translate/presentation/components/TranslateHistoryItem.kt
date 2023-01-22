@@ -3,6 +3,7 @@ package com.ps.translatepro.android.translate.presentation.components
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -44,7 +45,9 @@ fun TranslateHistoryItem(
                 style = MaterialTheme.typography.body2
             )
         }
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(12.dp))
+        Divider()
+        Spacer(modifier = Modifier.height(12.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
@@ -55,7 +58,7 @@ fun TranslateHistoryItem(
                 text = historyItem.toText,
                 color = MaterialTheme.colors.onSurface,
                 style = MaterialTheme.typography.body1,
-                fontWeight = FontWeight.Medium
+                fontWeight = FontWeight.Bold
             )
         }
     }
