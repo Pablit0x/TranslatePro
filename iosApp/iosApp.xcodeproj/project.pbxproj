@@ -25,6 +25,9 @@
 		EBCB576A297C56BB0047AAC4 /* LanguageDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB5769297C56BB0047AAC4 /* LanguageDisplay.swift */; };
 		EBCB576C297C57990047AAC4 /* ProgressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB576B297C57990047AAC4 /* ProgressButton.swift */; };
 		EBCB576E297C59340047AAC4 /* TranslateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCB576D297C59340047AAC4 /* TranslateTextField.swift */; };
+		EBCE945229853F28001ECA00 /* MicrophonePowerObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCE945129853F28001ECA00 /* MicrophonePowerObserver.swift */; };
+		EBCE94542985422C001ECA00 /* IOSVoiceToTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCE94532985422C001ECA00 /* IOSVoiceToTextParser.swift */; };
+		EBCE945729856F7F001ECA00 /* IOSVoiceToTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCE945629856F7F001ECA00 /* IOSVoiceToTextViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		EBCB5769297C56BB0047AAC4 /* LanguageDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageDisplay.swift; sourceTree = "<group>"; };
 		EBCB576B297C57990047AAC4 /* ProgressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressButton.swift; sourceTree = "<group>"; };
 		EBCB576D297C59340047AAC4 /* TranslateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateTextField.swift; sourceTree = "<group>"; };
+		EBCE945129853F28001ECA00 /* MicrophonePowerObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophonePowerObserver.swift; sourceTree = "<group>"; };
+		EBCE94532985422C001ECA00 /* IOSVoiceToTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSVoiceToTextParser.swift; sourceTree = "<group>"; };
+		EBCE945629856F7F001ECA00 /* IOSVoiceToTextViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSVoiceToTextViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +99,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				EBCE944F29853EF7001ECA00 /* voice_to_text */,
 				EBCB5758297C29330047AAC4 /* translate */,
 				EBCB5754297C0DBD0047AAC4 /* core */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
@@ -170,6 +177,32 @@
 				EB0806C0297CA64900E0E6B8 /* TranslateHistoryItem.swift */,
 			);
 			path = components;
+			sourceTree = "<group>";
+		};
+		EBCE944F29853EF7001ECA00 /* voice_to_text */ = {
+			isa = PBXGroup;
+			children = (
+				EBCE945529856F60001ECA00 /* presentation */,
+				EBCE945029853F09001ECA00 /* data */,
+			);
+			path = voice_to_text;
+			sourceTree = "<group>";
+		};
+		EBCE945029853F09001ECA00 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				EBCE945129853F28001ECA00 /* MicrophonePowerObserver.swift */,
+				EBCE94532985422C001ECA00 /* IOSVoiceToTextParser.swift */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		EBCE945529856F60001ECA00 /* presentation */ = {
+			isa = PBXGroup;
+			children = (
+				EBCE945629856F7F001ECA00 /* IOSVoiceToTextViewModel.swift */,
+			);
+			path = presentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,9 +338,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBCB576C297C57990047AAC4 /* ProgressButton.swift in Sources */,
+				EBCE945729856F7F001ECA00 /* IOSVoiceToTextViewModel.swift in Sources */,
+				EBCE945229853F28001ECA00 /* MicrophonePowerObserver.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				EBCB5768297C53C00047AAC4 /* GradientSurface.swift in Sources */,
 				EBCB575C297C295F0047AAC4 /* LanguageDropDownItem.swift in Sources */,
+				EBCE94542985422C001ECA00 /* IOSVoiceToTextParser.swift in Sources */,
 				EBCB576A297C56BB0047AAC4 /* LanguageDisplay.swift in Sources */,
 				EBCB5760297C30420047AAC4 /* SmallLanguageIcon.swift in Sources */,
 				EBCB5764297C351F0047AAC4 /* IOSTranslateViewModel.swift in Sources */,
