@@ -14,7 +14,6 @@ struct TranslateHistoryItem: View {
     let onClick: () -> Void
     
     var body: some View {
-        Button(action: onClick) {
             VStack(alignment: .leading, spacing: 0) {
                 HStack {
                     SmallLanguageIcon(language: historyItem.fromLanguage)
@@ -39,8 +38,11 @@ struct TranslateHistoryItem: View {
             .gradientSurface()
             .cornerRadius(15)
             .shadow(radius: 4)
+            .onTapGesture {onClick()}
+            .onLongPressGesture(minimumDuration: 0.1) {
+                
+            }
         }
-    }
 }
 
 struct TranslateHistoryItem_Previews: PreviewProvider {

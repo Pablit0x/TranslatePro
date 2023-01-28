@@ -17,12 +17,12 @@ class MicrophonePowerObserver: ObservableObject {
     
     @Published private(set) var micPowerRatio = 0.0
     
-    private let powerRatioEmissionPerSecond = 20.0
+    private let powerRatioEmissionsPerSecond = 20.0
     
-    func startObserving(){
-        do{
+    func startObserving() {
+        do {
             let recorderSettings: [String: Any] = [
-                AVFormatIDKey :NSNumber(value: kAudioFormatAppleLossless),
+                AVFormatIDKey: NSNumber(value: kAudioFormatAppleLossless),
                 AVNumberOfChannelsKey: 1
             ]
             
@@ -32,12 +32,13 @@ class MicrophonePowerObserver: ObservableObject {
             self.audioRecorder = recorder
             
             self.cancellable = Timer.publish(
-                every: 1.0 / powerRatioEmissionPerSecond,
-                tolerance: 1.0 / powerRatioEmissionPerSecond,
+                every: 1.0 / powerRatioEmissionsPerSecond,
+                tolerance: 1.0 / powerRatioEmissionsPerSecond,
                 on: .main,
-                in: .common)
+                in: .common
+            )
             .autoconnect()
-            .sink{[weak self] _ in
+            .sink { [weak self] _ in
                 recorder.updateMeters()
                 
                 let powerOffset = recorder.averagePower(forChannel: 0)
@@ -48,15 +49,17 @@ class MicrophonePowerObserver: ObservableObject {
                     self?.micPowerRatio = normalizedOffset
                 }
             }
-        } catch{
-            print("An error occured when observing microphone power: \(error.localizedDescription)")
+        } catch {
+            print("An error occurred when observing microphone power: \(error.localizedDescription)")
         }
     }
     
-    func release(){
+    func release() {
         cancellable = nil
+        
         audioRecorder?.stop()
         audioRecorder = nil
+        
         micPowerRatio = 0.0
     }
 }

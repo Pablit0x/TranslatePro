@@ -1,11 +1,3 @@
-//
-//  IOSVoiceToTextParser.swift
-//  iosApp
-//
-//  Created by Paweł Szymański on 28/01/2023.
-//  Copyright © 2023 orgName. All rights reserved.
-//
-
 import Foundation
 import shared
 import Speech
@@ -39,7 +31,7 @@ class IOSVoiceToTextParser: VoiceToTextParser, ObservableObject {
     }
     
     func startListening(languageCode: String) {
-        updateState(error: nil)
+        updateState(result: "", error: nil)
         
         let chosenLocale = Locale.init(identifier: languageCode)
         let supportedLocale = SFSpeechRecognizer.supportedLocales().contains(chosenLocale) ? chosenLocale : Locale.init(identifier: "en-US")
@@ -110,22 +102,11 @@ class IOSVoiceToTextParser: VoiceToTextParser, ObservableObject {
         audioBufferRequest = nil
         
         audioEngine?.stop()
-        audioEngine = nil
         
         inputNode?.removeTap(onBus: 0)
         
         try? audioSession?.setActive(false)
         audioSession = nil
-    }
-    
-    private func updateState(result: String? = nil, error: String? = nil, powerRatio: CGFloat? = nil, isSpeaking: Bool? = nil) {
-        let currentState = _state.value
-        _state.value = VoiceToTextParserState(
-            result: result ?? currentState?.result ?? "",
-            error: error ?? currentState?.error,
-            powerRatio: Float(powerRatio ?? CGFloat(currentState?.powerRatio ?? 0.0)),
-            isSpeaking: isSpeaking ?? currentState?.isSpeaking ?? false
-        )
     }
     
     private func requestPermissions(onGranted: @escaping () -> Void) {
@@ -148,4 +129,13 @@ class IOSVoiceToTextParser: VoiceToTextParser, ObservableObject {
         }
     }
     
+    private func updateState(result: String? = nil, error: String? = nil, powerRatio: CGFloat? = nil, isSpeaking: Bool? = nil) {
+        let currentState = _state.value
+        _state.value = VoiceToTextParserState(
+            result: result ?? currentState?.result ?? "",
+            error: error ?? currentState?.error,
+            powerRatio: Float(powerRatio ?? CGFloat(currentState?.powerRatio ?? 0.0)),
+            isSpeaking: isSpeaking ?? currentState?.isSpeaking ?? false
+        )
+    }
 }
