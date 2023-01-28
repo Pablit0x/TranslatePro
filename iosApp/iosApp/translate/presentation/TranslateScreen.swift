@@ -64,6 +64,7 @@ struct TranslateScreen: View {
                     Text("History")
                         .font(.title)
                         .bold()
+                        .padding(.vertical, 16)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .listRowSeparator(.hidden)
                         .listRowBackground(Color.background)

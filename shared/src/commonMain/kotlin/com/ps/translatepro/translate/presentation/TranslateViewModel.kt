@@ -153,6 +153,26 @@ class TranslateViewModel(
             TranslateEvent.Translate -> {
                 translate(state.value)
             }
+            is TranslateEvent.DeleteHistoryItem -> {
+                historyDataSource.deleteHistoryItemById(event.historyItemId ?: -1)
+            }
+            TranslateEvent.ClearHistory -> {
+                historyDataSource.clearHistory()
+            }
+            TranslateEvent.OpenClearHistoryDialog -> {
+                _state.update{
+                    it.copy(
+                        isClearHistoryDialogOpen = true
+                    )
+                }
+            }
+            TranslateEvent.CloseClearHistoryDialog -> {
+                _state.update{
+                    it.copy(
+                        isClearHistoryDialogOpen = false
+                    )
+                }
+            }
             else -> Unit
         }
     }

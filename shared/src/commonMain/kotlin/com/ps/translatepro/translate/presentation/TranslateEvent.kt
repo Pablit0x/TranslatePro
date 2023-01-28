@@ -34,4 +34,12 @@ sealed class TranslateEvent{
     data class SubmitVoiceResult(val result: String?) : TranslateEvent()
 
     object OnErrorSeen: TranslateEvent()
+
+    data class DeleteHistoryItem(val historyItemId: Long?): TranslateEvent()
+
+    object ClearHistory: TranslateEvent()
+
+    object OpenClearHistoryDialog: TranslateEvent()
+
+    object CloseClearHistoryDialog : TranslateEvent()
 }

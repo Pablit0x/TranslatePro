@@ -2,11 +2,15 @@ package com.ps.translatepro.android.translate.presentation
 
 import android.speech.tts.TextToSpeech
 import android.widget.Toast
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.DeleteForever
+import androidx.compose.material.icons.rounded.MoreHoriz
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -20,11 +24,11 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
 import com.ps.translatepro.android.R
+import com.ps.translatepro.android.core.theme.LightBlue
 import com.ps.translatepro.android.translate.presentation.components.*
 import com.ps.translatepro.translate.domain.translate.TranslateError
 import com.ps.translatepro.translate.presentation.TranslateEvent
 import com.ps.translatepro.translate.presentation.TranslateState
-
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -35,6 +39,7 @@ fun TranslateScreen(
     state: TranslateState,
     onEvent: (TranslateEvent) -> Unit,
 ) {
+    var showOptions by remember { mutableStateOf(false) }
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     val listState = rememberLazyListState()
@@ -74,8 +79,7 @@ fun TranslateScreen(
                     modifier = Modifier.size(35.dp)
                 )
             }
-        },
-        floatingActionButtonPosition = FabPosition.Center
+        }, floatingActionButtonPosition = FabPosition.Center
     ) { padding ->
         LazyColumn(
             modifier = Modifier
@@ -87,13 +91,11 @@ fun TranslateScreen(
         ) {
             item {
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    LanguageDropDown(
-                        language = state.fromLanguage,
+                    LanguageDropDown(language = state.fromLanguage,
                         isOpen = state.isChoosingFromLanguage,
                         onClick = {
                             keyboardController?.hide()
@@ -104,15 +106,13 @@ fun TranslateScreen(
                         },
                         onSelectLanguage = {
                             onEvent(TranslateEvent.ChooseFromLanguage(it))
-                        }
-                    )
+                        })
                     Spacer(modifier = Modifier.weight(1f))
                     SwapLanguagesButton(onClick = {
                         onEvent(TranslateEvent.SwapLanguages)
                     })
                     Spacer(modifier = Modifier.weight(1f))
-                    LanguageDropDown(
-                        language = state.toLanguage,
+                    LanguageDropDown(language = state.toLanguage,
                         isOpen = state.isChoosingToLanguage,
                         onClick = {
                             keyboardController?.hide()
@@ -123,8 +123,7 @@ fun TranslateScreen(
                         },
                         onSelectLanguage = {
                             onEvent(TranslateEvent.ChooseToLanguage(it))
-                        }
-                    )
+                        })
                 }
             }
             item {
@@ -142,9 +141,7 @@ fun TranslateScreen(
                     },
                     onTextChange = { onEvent(TranslateEvent.ChangeTranslationText(it)) },
                     onCopyClick = { text ->
-                        clipboardManager.setText(
-                            buildAnnotatedString { append(text) }
-                        )
+                        clipboardManager.setText(buildAnnotatedString { append(text) })
                         Toast.makeText(
                             context,
                             context.getString(com.ps.translatepro.android.R.string.copied_to_clipboard),
@@ -155,10 +152,7 @@ fun TranslateScreen(
                     onSpeakerClick = {
                         tts.language = state.toLanguage.toLocale() ?: Locale.ENGLISH
                         tts.speak(
-                            state.toText,
-                            TextToSpeech.QUEUE_FLUSH,
-                            null,
-                            null
+                            state.toText, TextToSpeech.QUEUE_FLUSH, null, null
                         )
                     },
                     onTextFieldClick = { onEvent(TranslateEvent.EditTranslation) },
@@ -167,24 +161,55 @@ fun TranslateScreen(
             }
             item {
                 if (state.history.isNotEmpty()) {
-                    Text(
-                        text = stringResource(id = com.ps.translatepro.android.R.string.history),
-                        style = MaterialTheme.typography.h2
-                    )
+                    Row(modifier = Modifier.fillMaxWidth()) {
+                        Text(
+                            text = stringResource(id = R.string.history),
+                            style = MaterialTheme.typography.h2
+                        )
+                        Spacer(modifier = Modifier.weight(1f))
+                        AnimatedVisibility(visible = showOptions) {
+                            IconButton(onClick = { onEvent(TranslateEvent.OpenClearHistoryDialog) }) {
+                                Icon(
+                                    imageVector = Icons.Rounded.DeleteForever,
+                                    contentDescription = stringResource(id = R.string.clear_history),
+                                    tint = LightBlue
+                                )
+
+                            }
+                        }
+                        IconButton(onClick = { showOptions = !showOptions }) {
+                            Icon(
+                                imageVector = Icons.Rounded.MoreHoriz,
+                                contentDescription = stringResource(id = R.string.close),
+                                tint = LightBlue
+                            )
+
+                        }
+                    }
                 }
             }
             items(state.history) { historyItem ->
-                TranslateHistoryItem(
-                    historyItem = historyItem,
-                    onClick = {
-                        coroutineScope.launch {
-                            if(!firstItemVisible)
-                                listState.animateScrollToItem(1)
-                        }
-                        onEvent(TranslateEvent.SelectHistoryItem(historyItem)) },
-                    modifier = Modifier.fillMaxWidth()
-            )
+                TranslateHistoryItem(historyItem = historyItem, onClick = {
+                    coroutineScope.launch {
+                        if (!firstItemVisible) listState.animateScrollToItem(1)
+                    }
+                    onEvent(TranslateEvent.SelectHistoryItem(historyItem))
+                }, onDelete = {
+                    onEvent(TranslateEvent.DeleteHistoryItem(historyItemId = historyItem.id))
+
+                }, modifier = Modifier.fillMaxWidth()
+                )
             }
         }
+    }
+
+    if (state.isClearHistoryDialogOpen) {
+        ClearHistoryDialog(closeDialog = {
+            onEvent(TranslateEvent.CloseClearHistoryDialog)
+            showOptions = false
+        }, clearHistory = {
+            onEvent(TranslateEvent.ClearHistory)
+            showOptions = false
+        })
     }
 }

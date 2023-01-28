@@ -25,7 +25,8 @@ extension TranslateScreen {
             isChoosingFromLanguage: false,
             isChoosingToLanguage: false,
             error: nil,
-            history: []
+            history: [],
+            isClearHistoryDialogOpen: false
         )
         private var handle: DisposableHandle?
         

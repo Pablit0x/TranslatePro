@@ -37,4 +37,13 @@ class SqlDelightHistoryDataSource(
             timestamp = Clock.System.now().toEpochMilliseconds()
         )
     }
+
+    override fun deleteHistoryItemById(historyItemId: Long) {
+        queries.deleteHistoryItemById(id = historyItemId)
+    }
+
+    override fun clearHistory() {
+        queries.clearHistory()
+    }
+
 }
