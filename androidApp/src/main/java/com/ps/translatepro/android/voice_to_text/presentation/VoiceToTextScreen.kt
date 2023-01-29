@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
-import androidx.compose.material.R
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material.icons.rounded.Close
@@ -27,10 +26,10 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.ps.translatepro.android.core.theme.LightBlue
+import com.ps.translatepro.android.voice_to_text.presentation.components.VoiceRecorderDisplay
 import com.ps.translatepro.voice_to_text.presentation.DisplayState
 import com.ps.translatepro.voice_to_text.presentation.VoiceToTextEvent
 import com.ps.translatepro.voice_to_text.presentation.VoiceToTextState
-import com.ps.translatepro.android.voice_to_text.presentation.components.VoiceRecorderDisplay
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -41,81 +40,77 @@ fun VoiceToTextScreen(
     onEvent: (VoiceToTextEvent) -> Unit
 ) {
     val context = LocalContext.current
-    val recordAudioLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestPermission(),
-        onResult = { isGranted ->
-            onEvent(
-                VoiceToTextEvent.PermissionResult(
-                    isGranted = isGranted,
-                    isPermanentlyDeclined = !isGranted && !(context as ComponentActivity)
-                        .shouldShowRequestPermissionRationale(Manifest.permission.RECORD_AUDIO)
+    val recordAudioLauncher =
+        rememberLauncherForActivityResult(contract = ActivityResultContracts.RequestPermission(),
+            onResult = { isGranted ->
+                onEvent(
+                    VoiceToTextEvent.PermissionResult(
+                        isGranted = isGranted,
+                        isPermanentlyDeclined = !isGranted && !(context as ComponentActivity).shouldShowRequestPermissionRationale(
+                                Manifest.permission.RECORD_AUDIO
+                            )
+                    )
                 )
-            )
-        }
-    )
+            })
     LaunchedEffect(recordAudioLauncher) {
         recordAudioLauncher.launch(Manifest.permission.RECORD_AUDIO)
     }
 
-    Scaffold(
-        floatingActionButtonPosition = FabPosition.Center,
-        floatingActionButton = {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                FloatingActionButton(
-                    onClick = {
-                        if (state.displayState != DisplayState.DISPLAYING_RESULTS) {
-                            onEvent(VoiceToTextEvent.ToggleRecording(languageCode))
-                        } else {
-                            onResult(state.spokenText)
-                        }
-                    },
-                    backgroundColor = MaterialTheme.colors.primary,
-                    contentColor = MaterialTheme.colors.onPrimary,
-                    modifier = Modifier
-                        .size(65.dp)
-                ) {
-                    AnimatedContent(targetState = state.displayState) { displayState ->
-                        when (displayState) {
-                            DisplayState.SPEAKING -> {
-                                Icon(
-                                    imageVector = Icons.Rounded.Close,
-                                    contentDescription = stringResource(id = com.ps.translatepro.android.R.string.stop_recording),
-                                    modifier = Modifier.size(50.dp)
-                                )
-                            }
-                            DisplayState.DISPLAYING_RESULTS -> {
-                                Icon(
-                                    imageVector = Icons.Rounded.Check,
-                                    contentDescription = stringResource(id = com.ps.translatepro.android.R.string.apply),
-                                    modifier = Modifier.size(50.dp)
-                                )
-                            }
-                            else -> {
-                                Icon(
-                                    imageVector = ImageVector.vectorResource(id = com.ps.translatepro.android.R.drawable.mic),
-                                    contentDescription = stringResource(id = com.ps.translatepro.android.R.string.record_audio),
-                                    modifier = Modifier.size(50.dp)
-                                )
-                            }
-                        }
-                    }
-                }
-                if (state.displayState == DisplayState.DISPLAYING_RESULTS) {
-                    IconButton(onClick = {
+    Scaffold(floatingActionButtonPosition = FabPosition.Center, floatingActionButton = {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            FloatingActionButton(
+                onClick = {
+                    if (state.displayState != DisplayState.DISPLAYING_RESULTS) {
                         onEvent(VoiceToTextEvent.ToggleRecording(languageCode))
-                    }) {
-                        Icon(
-                            imageVector = Icons.Rounded.Refresh,
-                            contentDescription = stringResource(id = com.ps.translatepro.android.R.string.record_again),
-                            tint = LightBlue
-                        )
+                    } else {
+                        onResult(state.spokenText)
+                    }
+                },
+                backgroundColor = MaterialTheme.colors.primary,
+                contentColor = MaterialTheme.colors.onPrimary,
+                modifier = Modifier.size(65.dp)
+            ) {
+                AnimatedContent(targetState = state.displayState) { displayState ->
+                    when (displayState) {
+                        DisplayState.SPEAKING -> {
+                            Icon(
+                                imageVector = Icons.Rounded.Close,
+                                contentDescription = stringResource(id = com.ps.translatepro.android.R.string.stop_recording),
+                                modifier = Modifier.size(50.dp)
+                            )
+                        }
+                        DisplayState.DISPLAYING_RESULTS -> {
+                            Icon(
+                                imageVector = Icons.Rounded.Check,
+                                contentDescription = stringResource(id = com.ps.translatepro.android.R.string.apply),
+                                modifier = Modifier.size(50.dp)
+                            )
+                        }
+                        else -> {
+                            Icon(
+                                imageVector = ImageVector.vectorResource(id = com.ps.translatepro.android.R.drawable.mic),
+                                contentDescription = stringResource(id = com.ps.translatepro.android.R.string.record_audio),
+                                modifier = Modifier.size(50.dp)
+                            )
+                        }
                     }
                 }
             }
+            if (state.displayState == DisplayState.DISPLAYING_RESULTS) {
+                IconButton(onClick = {
+                    onEvent(VoiceToTextEvent.ToggleRecording(languageCode))
+                }) {
+                    Icon(
+                        imageVector = Icons.Rounded.Refresh,
+                        contentDescription = stringResource(id = com.ps.translatepro.android.R.string.record_again),
+                        tint = LightBlue
+                    )
+                }
+            }
         }
-    ) { padding ->
+    }) { padding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -125,15 +120,14 @@ fun VoiceToTextScreen(
                 IconButton(
                     onClick = {
                         onEvent(VoiceToTextEvent.Close)
-                    },
-                    modifier = Modifier.align(Alignment.CenterStart)
+                    }, modifier = Modifier.align(Alignment.CenterStart)
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Close,
                         contentDescription = stringResource(id = com.ps.translatepro.android.R.string.close)
                     )
                 }
-                if(state.displayState == DisplayState.SPEAKING) {
+                if (state.displayState == DisplayState.SPEAKING) {
                     Text(
                         text = stringResource(id = com.ps.translatepro.android.R.string.listening),
                         color = LightBlue,
@@ -152,7 +146,7 @@ fun VoiceToTextScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 AnimatedContent(targetState = state.displayState) { displayState ->
-                    when(displayState) {
+                    when (displayState) {
                         DisplayState.WAITING_TO_TALK -> {
                             Text(
                                 text = stringResource(id = com.ps.translatepro.android.R.string.start_talking),
@@ -176,12 +170,18 @@ fun VoiceToTextScreen(
                             )
                         }
                         DisplayState.ERROR -> {
+                            val outputString = when (state.recordError) {
+                                "Error: 9" -> stringResource(id = com.ps.translatepro.android.R.string.emulator_error)
+                                null -> stringResource(id = com.ps.translatepro.android.R.string.error_unknown)
+                                else -> state.recordError!!
+                            }
                             Text(
-                                text = state.recordError ?: "Unknown error",
+                                text = outputString,
                                 style = MaterialTheme.typography.h2,
                                 textAlign = TextAlign.Center,
                                 color = MaterialTheme.colors.error
                             )
+
                         }
                         else -> Unit
                     }

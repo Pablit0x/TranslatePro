@@ -33,8 +33,15 @@ class IOSVoiceToTextParser: VoiceToTextParser, ObservableObject {
     func startListening(languageCode: String) {
         updateState(result: "", error: nil)
         
-        let chosenLocale = Locale.init(identifier: languageCode)
-        let supportedLocale = SFSpeechRecognizer.supportedLocales().contains(chosenLocale) ? chosenLocale : Locale.init(identifier: "en-US")
+        let chosenLocale = Locale(identifier: languageCode)
+        let supportedLocales = SFSpeechRecognizer.supportedLocales()
+
+        let matchedLocale = supportedLocales.first { locale -> Bool in
+            return String(locale.identifier.prefix(2)) == String(chosenLocale.identifier.prefix(2))
+        }
+
+        let supportedLocale = matchedLocale ?? Locale(identifier: "en-US")
+
         self.recognizer = SFSpeechRecognizer(locale: supportedLocale)
         
         guard recognizer?.isAvailable == true else {

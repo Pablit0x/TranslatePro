@@ -13,7 +13,7 @@
     <string name="error_service_unavailable">Awkward, something went wrong. Please try again later.</string>
     <string name="error_client">Awkward, something went wrong. Please contact the support.</string>
     <string name="error_server">Awkward, something went wrong. Please try again later.</string>
-    <string name="error_unknown">Oops, an unknown error happened.</string>
+    <string name="error_unknown">Oops, an unknown error occurred.</string>
     <string name="record_audio">Record Audio Icon</string>
     <string name="error_speech_recognition_unavailable">Speech recognition is unavailable on your device.</string>
     <string name="stop_recording">Stop Recording Icon</string>
@@ -27,5 +27,6 @@
     <string name="clear">Clear</string>
     <string name="clear_history_title">Clear Translation History</string>
     <string name="clear_history_description">Are you sure you want to clear entire translation history?</string>
+    <string name="emulator_error">This feature is not supported on emulator environments.</string>
 
 </resources>

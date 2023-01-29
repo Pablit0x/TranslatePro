@@ -101,6 +101,7 @@ struct VoiceToTextScreen: View {
                         Text(viewModel.state.recordError ?? "Unknown error")
                             .font(.title2)
                             .foregroundColor(.red)
+                            .multilineTextAlignment(.center)
                         
                         Text("Click record and try again...")
                             .font(.title3)
