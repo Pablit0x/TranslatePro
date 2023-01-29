@@ -12,8 +12,35 @@ import shared
 struct TranslateHistoryItem: View {
     let historyItem: UiHistoryItem
     let onClick: () -> Void
+    let onDelete: () -> Void
     
+    @State private var showOptions = false
     var body: some View {
+        VStack {
+            if showOptions {
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        withAnimation {
+                            onDelete()
+                            showOptions = false
+                        }
+                    }) {
+                        Image(systemName: "trash")
+                            .foregroundColor(.lightBlue)
+                    }.padding(.trailing, 16)
+                    Button(action: {
+                        withAnimation {
+                            showOptions = false
+                        }
+                    }) {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.lightBlue)
+                    }
+                }
+                .transition(.move(edge: .trailing))
+                .padding(.bottom, 8)
+            }
             VStack(alignment: .leading, spacing: 0) {
                 HStack {
                     SmallLanguageIcon(language: historyItem.fromLanguage)
@@ -40,9 +67,13 @@ struct TranslateHistoryItem: View {
             .shadow(radius: 4)
             .onTapGesture {onClick()}
             .onLongPressGesture(minimumDuration: 0.1) {
-                
+                withAnimation {
+                    showOptions.toggle()
+                }
             }
         }
+    }
+
 }
 
 struct TranslateHistoryItem_Previews: PreviewProvider {
@@ -55,7 +86,8 @@ struct TranslateHistoryItem_Previews: PreviewProvider {
                 fromLanguage: UiLanguage(language: .english, imageName: "english"),
                 toLanguage: UiLanguage(language: .german, imageName: "german")
             ),
-            onClick: {}
+            onClick: {},
+            onDelete: {}
         )
     }
 }

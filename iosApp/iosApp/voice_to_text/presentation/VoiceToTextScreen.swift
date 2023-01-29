@@ -31,7 +31,7 @@ struct VoiceToTextScreen: View {
         VStack {
             Spacer()
             
-            mainView
+            mainView.padding(16)
             
             Spacer()
             
@@ -74,11 +74,11 @@ struct VoiceToTextScreen: View {
             switch displayState {
             case .waitingToTalk:
                 if(showHint){
-                    var hint = Text("Click record and start talking...")
+                    let hint = Text("Click record and start talking...")
                         .font(.title2)
                     return AnyView(hint)
                 } else {
-                    var progressBar = ProgressView()
+                    let progressBar = ProgressView()
                         .animation(.easeInOut, value: !showHint)
                         .padding()
                         .cornerRadius(100)
@@ -90,6 +90,10 @@ struct VoiceToTextScreen: View {
                 return AnyView(
                     Text(viewModel.state.spokenText)
                         .font(.title2)
+                        .padding()
+                        .gradientSurface()
+                        .cornerRadius(15)
+                        .shadow(radius: 4)
                 )
             case .error:
                 return AnyView(

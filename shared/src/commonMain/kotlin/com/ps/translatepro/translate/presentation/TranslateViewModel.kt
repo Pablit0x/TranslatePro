@@ -154,7 +154,7 @@ class TranslateViewModel(
                 translate(state.value)
             }
             is TranslateEvent.DeleteHistoryItem -> {
-                historyDataSource.deleteHistoryItemById(event.historyItemId ?: -1)
+                historyDataSource.deleteHistoryItemById(event.historyItemId)
             }
             TranslateEvent.ClearHistory -> {
                 historyDataSource.clearHistory()

@@ -1,6 +1,7 @@
 package com.ps.translatepro.translate.presentation
 
 import com.ps.translatepro.core.presentation.UiLanguage
+import com.ps.translatepro.translate.domain.history.HistoryItem
 
 sealed class TranslateEvent{
     data class ChooseFromLanguage(
@@ -35,7 +36,7 @@ sealed class TranslateEvent{
 
     object OnErrorSeen: TranslateEvent()
 
-    data class DeleteHistoryItem(val historyItemId: Long?): TranslateEvent()
+    data class DeleteHistoryItem(val historyItemId: Int): TranslateEvent()
 
     object ClearHistory: TranslateEvent()
 

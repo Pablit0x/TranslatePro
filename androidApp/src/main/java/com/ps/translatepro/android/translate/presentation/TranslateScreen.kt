@@ -195,7 +195,7 @@ fun TranslateScreen(
                     }
                     onEvent(TranslateEvent.SelectHistoryItem(historyItem))
                 }, onDelete = {
-                    onEvent(TranslateEvent.DeleteHistoryItem(historyItemId = historyItem.id))
+                    onEvent(TranslateEvent.DeleteHistoryItem(historyItemId = historyItem.id.toInt()))
 
                 }, modifier = Modifier.fillMaxWidth()
                 )

@@ -38,8 +38,8 @@ class SqlDelightHistoryDataSource(
         )
     }
 
-    override fun deleteHistoryItemById(historyItemId: Long) {
-        queries.deleteHistoryItemById(id = historyItemId)
+    override fun deleteHistoryItemById(historyItemId: Int) {
+        queries.deleteHistoryItemById(id = historyItemId.toLong())
     }
 
     override fun clearHistory() {

@@ -5,6 +5,6 @@ import com.ps.translatepro.core.domain.util.CommonFlow
 interface HistoryDataSource {
     fun getHistory() : CommonFlow<List<HistoryItem>>
     suspend fun insertHistoryItem(historyItem: HistoryItem)
-    fun deleteHistoryItemById(historyItemId: Long)
+    fun deleteHistoryItemById(historyItemId: Int)
     fun clearHistory()
 }
