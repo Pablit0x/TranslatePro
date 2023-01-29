@@ -18,7 +18,7 @@
     <string name="stop_recording">Stop Recording Icon</string>
     <string name="apply">Apply Icon</string>
     <string name="record_again">Record Audio Again Icon / Refresh</string>
-    <string name="listening">Listening...</string>
+    <string name="listening">Listening…</string>
     <string name="start_talking">Click record to start talking…</string>
     <string name="delete">Delete Icon</string>
     <string name="clear_history">Clear History Icon</string>
