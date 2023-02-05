@@ -13,11 +13,12 @@ struct TranslateScreen: View {
     private var historyDataSource: HistoryDataSource
     private var translateUseCase: TranslateUseCase
     @ObservedObject var viewModel: IOSTranslateViewModel
-    private let parser = IOSVoiceToTextParser()
+    private let parser: any VoiceToTextParser
     
-    init(historyDataSource: HistoryDataSource, translateUseCase: TranslateUseCase) {
+    init(historyDataSource: HistoryDataSource, translateUseCase: TranslateUseCase, parser: VoiceToTextParser) {
         self.historyDataSource = historyDataSource
         self.translateUseCase = translateUseCase
+        self.parser = parser
         self.viewModel = IOSTranslateViewModel(historyDataSource: historyDataSource, translateUseCase: translateUseCase)
     }
     
@@ -33,7 +34,7 @@ struct TranslateScreen: View {
                         selectLanguage: { language in
                             viewModel.onEvent(event: TranslateEvent.ChooseFromLanguage(language: language))
                         }
-                    )
+                    ).accessibilityIdentifier("from language dropdown")
                     Spacer()
                     SwapLanguageButton(onClick: {
                         viewModel.onEvent(event: TranslateEvent.SwapLanguages())
@@ -45,7 +46,7 @@ struct TranslateScreen: View {
                         selectLanguage: { language in
                             viewModel.onEvent(event: TranslateEvent.ChooseToLanguage(language: language))
                         }
-                    )
+                    ).accessibilityIdentifier("to language dropdown")
                 }
                 .listRowSeparator(.hidden)
                 .listRowBackground(Color.background)
@@ -132,6 +133,7 @@ struct TranslateScreen: View {
                                     .padding()
                                 Image(uiImage: UIImage(named: "mic")!)
                                     .foregroundColor(.onPrimary)
+                                    .accessibilityIdentifier("Record audio")
                             }
                             .frame(maxWidth: 100, maxHeight: 100)
                         }

@@ -16,7 +16,7 @@ struct SwapLanguageButton: View {
             Image(uiImage: UIImage(named: "swap_languages")!)
                 .padding()
                 .foregroundColor(Color.onSurface)
-        }
+        }.accessibilityIdentifier("swap languages button")
     }
 }
 
