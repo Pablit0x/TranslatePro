@@ -19,8 +19,11 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
 import com.ps.translatepro.android.R
@@ -31,6 +34,9 @@ import com.ps.translatepro.translate.presentation.TranslateEvent
 import com.ps.translatepro.translate.presentation.TranslateState
 import kotlinx.coroutines.launch
 import java.util.*
+
+const val FROM_LANGUAGE_DROP_DOWN_TAG = "FromLanguageDropDown"
+const val TO_LANGUAGE_DROP_DOWN_TAG = "ToLanguageDropDown"
 
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -95,7 +101,8 @@ fun TranslateScreen(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    LanguageDropDown(language = state.fromLanguage,
+                    LanguageDropDown(
+                        language = state.fromLanguage,
                         isOpen = state.isChoosingFromLanguage,
                         onClick = {
                             keyboardController?.hide()
@@ -106,13 +113,17 @@ fun TranslateScreen(
                         },
                         onSelectLanguage = {
                             onEvent(TranslateEvent.ChooseFromLanguage(it))
+                        },
+                        modifier = Modifier.testTag(FROM_LANGUAGE_DROP_DOWN_TAG)
+                    )
+                    Spacer(modifier = Modifier.weight(1f))
+                    SwapLanguagesButton(
+                        onClick = {
+                            onEvent(TranslateEvent.SwapLanguages)
                         })
                     Spacer(modifier = Modifier.weight(1f))
-                    SwapLanguagesButton(onClick = {
-                        onEvent(TranslateEvent.SwapLanguages)
-                    })
-                    Spacer(modifier = Modifier.weight(1f))
-                    LanguageDropDown(language = state.toLanguage,
+                    LanguageDropDown(
+                        language = state.toLanguage,
                         isOpen = state.isChoosingToLanguage,
                         onClick = {
                             keyboardController?.hide()
@@ -123,7 +134,9 @@ fun TranslateScreen(
                         },
                         onSelectLanguage = {
                             onEvent(TranslateEvent.ChooseToLanguage(it))
-                        })
+                        },
+                        modifier = Modifier.testTag(TO_LANGUAGE_DROP_DOWN_TAG)
+                    )
                 }
             }
             item {

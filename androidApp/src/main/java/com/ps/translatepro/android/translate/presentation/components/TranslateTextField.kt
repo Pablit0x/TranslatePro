@@ -16,14 +16,19 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.ps.translatepro.android.R
 import com.ps.translatepro.android.core.theme.LightBlue
 import com.ps.translatepro.core.presentation.UiLanguage
 
+const val IDLE_TRANSLATE_TEXT_FIELD_TAG = "IdleTranslateTextField"
+const val TRANSLATED_TEXT_FIELD_TAG = "TranslatedTextField"
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun TranslateTextField(
@@ -124,7 +129,8 @@ private fun TranslatedTextField(
         Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = toText,
-            color = MaterialTheme.colors.onSurface
+            color = MaterialTheme.colors.onSurface,
+            modifier = Modifier.testTag(TRANSLATED_TEXT_FIELD_TAG)
         )
         Row(
             modifier = Modifier.align(Alignment.End)
@@ -161,7 +167,8 @@ private fun IdleTranslateTextField(
             onValueChange = onTextChange,
             cursorBrush = SolidColor(MaterialTheme.colors.primary),
             modifier = Modifier
-                .fillMaxSize(),
+                .fillMaxSize()
+                .testTag(IDLE_TRANSLATE_TEXT_FIELD_TAG),
             textStyle = TextStyle(
                 color = MaterialTheme.colors.onSurface
             ),

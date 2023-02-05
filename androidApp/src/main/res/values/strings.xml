@@ -28,5 +28,6 @@
     <string name="clear_history_title">Clear Translation History</string>
     <string name="clear_history_description">Are you sure you want to clear entire translation history?</string>
     <string name="emulator_error">This feature is not supported on emulator environments.</string>
+    <string name="idle_translate_text_field">IdleTranslateTextField</string>
 
 </resources>
