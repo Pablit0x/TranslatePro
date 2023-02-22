@@ -10,7 +10,6 @@
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
-		5935769CC947B358B4EC0E02 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370B066A28E95C83764FB6A1 /* Pods_iosApp.framework */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		EB0806BF297CA46300E0E6B8 /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0806BE297CA46300E0E6B8 /* TextToSpeech.swift */; };
 		EB0806C1297CA64900E0E6B8 /* TranslateHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0806C0297CA64900E0E6B8 /* TranslateHistoryItem.swift */; };
@@ -33,6 +32,7 @@
 		EBCE945A29857104001ECA00 /* VoiceRecorderDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCE945929857104001ECA00 /* VoiceRecorderDisplay.swift */; };
 		EBCE945E2985732D001ECA00 /* VoiceRecorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCE945D2985732D001ECA00 /* VoiceRecorderButton.swift */; };
 		EBCE9460298574C8001ECA00 /* VoiceToTextScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCE945F298574C8001ECA00 /* VoiceToTextScreen.swift */; };
+		FEB01D57A5ACDE2E93ED61FD /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370B066A28E95C83764FB6A1 /* Pods_iosApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5935769CC947B358B4EC0E02 /* Pods_iosApp.framework in Frameworks */,
+				FEB01D57A5ACDE2E93ED61FD /* Pods_iosApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
