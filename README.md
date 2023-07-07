@@ -1,4 +1,4 @@
-# TranslatePro <img src="logo.png" alt="Logo" width="30" height="30">
+# TranslatePro - Kotlin Multiplatform Translation App <img src="logo.png" alt="Logo" width="30" height="30">
 
 The TranslatePro is a mobile application that allows users to effortlessly translate text between 28 different languages on both Android and iOS devices. It leverages the power of Kotlin Multiplatform development to provide a seamless user experience across platforms with as little as possible code duplication.
 
