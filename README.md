@@ -3,6 +3,7 @@
 The TranslatePro is a mobile application that allows users to effortlessly translate text between 28 different languages on both Android and iOS devices. It leverages the power of Kotlin Multiplatform development to provide a seamless user experience across platforms with as little as possible code duplication.
 
 https://github.com/Pablit0x/TranslatePro/assets/76017191/1c4ec70f-0b33-429b-a2d2-d264464efab8
+
 https://github.com/Pablit0x/TranslatePro/assets/76017191/afcdabfa-9ff4-40cf-9cb5-abaa84f012f3
 
 
