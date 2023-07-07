@@ -2,7 +2,7 @@
 
 ![Logo](app_logo.png)
 
-The Kotlin Multiplatform Translation App is a versatile mobile application that allows users to effortlessly translate text between 28 different languages on both Android and iOS devices. It leverages the power of Kotlin Multiplatform development to provide a seamless user experience across platforms.
+The TranslatePro is a versatile mobile application that allows users to effortlessly translate text between 28 different languages on both Android and iOS devices. It leverages the power of Kotlin Multiplatform development to provide a seamless user experience across platforms.
 
 ## Features
 
@@ -18,7 +18,7 @@ The Kotlin Multiplatform Translation App is a versatile mobile application that 
 
 ## Technical Stack
 
-The Kotlin Multiplatform Translation App employs a robust technical stack to deliver its features and functionality:
+The TranslatePro employs a robust technical stack to deliver its features and functionality:
 
 - **Kotlin Multiplatform**: The app utilizes Kotlin Multiplatform development, enabling code sharing between Android and iOS platforms while maintaining native performance.
 
