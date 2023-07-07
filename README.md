@@ -2,10 +2,8 @@
 
 ## Presentation
 
-<figure>
-  https://github.com/Pablit0x/TranslatePro/assets/76017191/5ad6c88a-f259-4876-9ea9-fcd507dc3b5a
-  <figcaption>iOS</figcaption>
-</figure>
+https://github.com/Pablit0x/TranslatePro/assets/76017191/5ad6c88a-f259-4876-9ea9-fcd507dc3b5a
+
 
 <figure>
   <video controls width="400">
