@@ -1,6 +1,6 @@
 # TranslatePro - Kotlin Multiplatform Translation App <img src="logo.png" alt="Logo" width="30" height="30">
 
-The TranslatePro is a mobile application that allows users to effortlessly translate text between 28 different languages on both Android and iOS devices. It leverages the power of Kotlin Multiplatform development to provide a seamless user experience across platforms with as little as possible code duplication.
+TranslatePro is a mobile application that allows users to effortlessly translate text between 28 different languages on both Android and iOS devices. It leverages the power of Kotlin Multiplatform development to provide a seamless user experience across platforms with as little as possible code duplication.
 
 https://github.com/Pablit0x/TranslatePro/assets/76017191/1c4ec70f-0b33-429b-a2d2-d264464efab8
 
@@ -26,6 +26,8 @@ The TranslatePro employs a robust technical stack to deliver its features and fu
 - **Kotlin Multiplatform**: The app utilizes Kotlin Multiplatform development, enabling code sharing between Android and iOS platforms while maintaining native performance.
 
 - **Dagger Hilt**: Dependency injection in the Android side of the app is handled by Dagger Hilt, a powerful dependency injection framework that simplifies the management of dependencies and promotes modular application design.
+
+- **Ktor Client**: An HTTP client library that provides a simple and flexible API for making HTTP requests.
 
 - **Coroutines and Flows**: The app leverages Kotlin Coroutines and Flows to handle asynchronous operations and reactive streams. This ensures smooth execution of background tasks and seamless data flow between components.
 
